@@ -1,0 +1,29 @@
+extends layouts/application
+
+append config
+  - var PageTitle = ''
+  - var PageDescription = ''
+  - var PagePath = '/'
+
+block content
+  .mdl-grid
+    .mdl-cell.mdl-cell--8-col.mdl-cell--2-offset
+
+      h1.mdl-typography--display-2.mdl-typography--font-thin Простой графический редактор
+      form.mdl-grid( action='#' )
+        .mdl-cell.mdl-cell--1-col
+          .mdl-textfield
+            input#color(type='color')
+
+        .mdl-cell.mdl-cell--6-col
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input#number.mdl-textfield__input( type='number', min=1, max=2 )
+            label.mdl-textfield__label( for='number' ) Кол-во точек
+
+      #graph.graph( data-module='graph' )
+
+      .mdl-grid
+        .mdl-cell.mdl-cell--12-col
+          button#start.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='button') Начать
+          &nbsp;
+          button#stop.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(type='button', disabled='')  Остановить

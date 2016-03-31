@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible
+
+# Team
+
+    <name> -- <role> -- <twitter>
+
+# Thanks
+
+    <name>
