@@ -37,9 +37,9 @@ export default React.createClass({
       return
     }
 
-    let p = points({
-      x: parseInt(e.clientX - e.target.getBoundingClientRect().left),
-      y: parseInt(e.clientY - e.target.getBoundingClientRect().top),
+    points({
+      x: parseInt(e.clientX - this.graph[0][0].getBoundingClientRect().left),
+      y: parseInt(e.clientY - this.graph[0][0].getBoundingClientRect().top),
       color: this.props.color,
       number: points().length < number ? points().length : number
     }, () => {
