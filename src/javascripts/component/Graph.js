@@ -96,6 +96,7 @@ export default React.createClass({
   },
 
   updateDependence() {
+    // Для новой линии генерируем новый случайный цвет
     this.props.handleChangeColor( getRandomColor() )
   },
 

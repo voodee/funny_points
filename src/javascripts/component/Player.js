@@ -44,7 +44,7 @@ export default React.createClass({
 
 
     if (!animationPointIndex || animationPointIndex == this.props.points.length) {
-      animationPointIndex = 0
+      this.setState({ animationPointIndex: 0 })
       clearGraph()
     }
 
