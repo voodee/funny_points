@@ -59,6 +59,7 @@
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.5",
     "htmlparser2": "^3.9.0",
+    "immutable": "^3.7.6",
     "jasmine-react-helpers": "^0.2.2",
     "karma": "0.13.22",
     "karma-chrome-launcher": "0.2.3",

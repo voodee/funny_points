@@ -38,8 +38,8 @@ export default React.createClass({
     }
 
     points({
-      x: parseInt(e.clientX - this.graph[0][0].getBoundingClientRect().left),
-      y: parseInt(e.clientY - this.graph[0][0].getBoundingClientRect().top),
+      x: parseInt(e.clientX - (this.graph[0][0] ? this.graph[0][0].getBoundingClientRect().left : 0)),
+      y: parseInt(e.clientY - (this.graph[0][0] ? this.graph[0][0].getBoundingClientRect().top : 0)),
       color: this.props.color,
       number: points().length < number ? points().length : number
     }, () => {
@@ -57,6 +57,9 @@ export default React.createClass({
     const dotRadii = [dotRadius/5, dotRadius/1.25, dotRadius/2, dotRadius*1.25, dotRadius]
     const point = points()[index]
     const duration = 100
+
+    // Перед началом очищаем рабочую область
+    if (index === 0) this.clearGraph()
 
     // Рисуем кружочки
     let circle = this.graph.append('circle')
@@ -115,7 +118,6 @@ export default React.createClass({
         <Player 
           points={this.props.points()} 
           drawChart={this.drawChart}
-          clearGraph={this.clearGraph} 
           animationFlag={this.state.animationFlag}
           setAnimationFlag={this.setAnimationFlag}
         />

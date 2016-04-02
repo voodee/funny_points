@@ -10,8 +10,13 @@ export default React.createClass({
     points: PropTypes.array.isRequired,
     animationFlag: PropTypes.bool.isRequired,
     drawChart: PropTypes.func,
-    clearGraph: PropTypes.func,
     setAnimationFlag: PropTypes.func
+  },
+
+  test2(setState, fn, callBack = () => { }) {
+    return setState(({data}) => ({
+      data: fn(data)
+    }), callBack())
   },
 
   getInitialState() {
@@ -29,27 +34,26 @@ export default React.createClass({
 
   clickHandlerStop(e) {
     const { points, drawChart, setAnimationFlag } = this.props
-    let { animationPointIndex } = this.state
+    const { animationPointIndex } = this.state
     
     clearInterval(this.timer)
     for (let i = animationPointIndex; i < points.length; i++) drawChart(i)
     
     setAnimationFlag(false)
     this.setState({ animationPointIndex: 0 })
+
   },
 
   play() {
     let { animationPointIndex } = this.state
-    const { clearGraph } = this.props
+    const { points, drawChart } = this.props
 
-
-    if (!animationPointIndex || animationPointIndex == this.props.points.length) {
-      this.setState({ animationPointIndex: 0 })
-      clearGraph()
-    }
-
-    this.props.drawChart(animationPointIndex)
-    this.setState({ animationPointIndex: ++animationPointIndex })
+    this.setState({
+        animationPointIndex: update(animationPointIndex, {$apply: v => v == points.length - 1 ? 0 : v + 1})
+      }, () => {
+        drawChart(animationPointIndex)
+      })
+    
   },
 
   render() {

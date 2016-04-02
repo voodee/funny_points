@@ -140,7 +140,7 @@ describe('Работа редактора', () => {
     editor = renderer.getRenderOutput()
   })
 
-  it('добавление точки при клике на рабочей области', () => {
+  it('добавление точек при клике на рабочей области', () => {
     const graph = ShallowTestUtils.findWithType( editor, Graph )
     const graphTree = testTree( graph )
 
