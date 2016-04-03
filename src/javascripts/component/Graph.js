@@ -117,7 +117,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <svg testRef='svg' className='sd' onClick={this.clickHandlerSvg} />
+        <svg testRef='svg' onClick={this.clickHandlerSvg} />
         <Player 
           points={this.props.points()} 
           drawChart={this.drawChart}
