@@ -12,7 +12,7 @@ export default React.createClass({
     // Функция добавляет новую точку и возвращает текущий массив точек
     points: PropTypes.func.isRequired,
     // Текущий цвет
-    color: PropTypes.string.isRequired,
+    color: PropTypes.object.isRequired,
     // Текущее кол-во точек для соединения
     number: PropTypes.number.isRequired,
     // КолБэк на изменение цвета
@@ -30,7 +30,7 @@ export default React.createClass({
   },
 
   clickHandlerSvg(e) {
-    const { points, number } = this.props
+    const { points, number, color } = this.props
 
     if (this.state.animationFlag) {
       alert('Остановите показ, чтобы начать рисовать!')
@@ -40,7 +40,8 @@ export default React.createClass({
     points({
       x: parseInt(e.clientX - (this.graph[0][0] ? this.graph[0][0].getBoundingClientRect().left : 0)),
       y: parseInt(e.clientY - (this.graph[0][0] ? this.graph[0][0].getBoundingClientRect().top : 0)),
-      color: this.props.color,
+      color: color.rgb,
+      opacity: color.opacity,
       number: points().length < number ? points().length : number
     }, () => {
       // Рисуем точки и линии
@@ -64,6 +65,7 @@ export default React.createClass({
     // Рисуем кружочки
     let circle = this.graph.append('circle')
       .style('fill', point.color)
+      .style('opacity', point.opacity)
       .attr('r', dotRadii[0])
       .attr('cx', point.x)
       .attr('cy', point.y)
@@ -82,6 +84,7 @@ export default React.createClass({
       const prevPoint = points()[index-i-1]
       this.graph.append('line')
         .style('stroke', point.color)
+        .style('opacity', point.opacity)
         .style('stroke-width', dotRadius / 2)
         .attr({
           x1: prevPoint.x,

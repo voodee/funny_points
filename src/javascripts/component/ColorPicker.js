@@ -2,18 +2,24 @@
 
 import d3 from 'd3'
 import React from 'react'
+import ColorPicker from 'react-colors-picker'
 
 export default React.createClass({
 
-  handleChangeColor(e) {
-    this.props.handleChangeColor(e.target.value)
+  handleChangeColor({color, alpha}) {
+    this.props.handleChangeColor(color, alpha / 100)
   },
 
   render() {
     return (
-      <div className='mdl-textfield'>
-        <input type='color' value={this.props.color} onChange={this.handleChangeColor} />
-      </div>
+      <div className='mdl-textfield' style={{ textAlign: 'center' }}>
+        <ColorPicker
+            animation="slide-up"
+            color={this.props.color.rgb}
+            alpha={this.props.color.opacity * 100}
+            onChange={this.handleChangeColor}
+          />
+      </div>    
     )
   }
 

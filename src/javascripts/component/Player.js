@@ -13,12 +13,6 @@ export default React.createClass({
     setAnimationFlag: PropTypes.func
   },
 
-  test2(setState, fn, callBack = () => { }) {
-    return setState(({data}) => ({
-      data: fn(data)
-    }), callBack())
-  },
-
   getInitialState() {
     return {
       animationPointIndex: 0

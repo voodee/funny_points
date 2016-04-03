@@ -22,7 +22,12 @@ var cssTask = function () {
     .pipe(sourcemaps.init())
     // .pipe(sass(config.tasks.css.sass))
     .pipe(stylus({
-       use: [nib()]
+      'include css': true,
+      use: [nib()],
+      include: [
+        './bower_components/../', // Shortcut references possible everywhere, e.g. @import 'bower_components/bla'
+        './node_modules/../'      // Shortcut references possible everywhere, e.g. @import 'node_modules/bla'
+      ]
        //compress: true
      }))
     .on('error', handleErrors)

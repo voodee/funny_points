@@ -11,7 +11,10 @@ export default React.createClass({
   getInitialState() {
     return {
       points: [],
-      color: '#000000',
+      color: { 
+        rgb: '#000000',
+        opacity: 1,
+      },
       number: {
         current: 2,
         min: 1,
@@ -42,8 +45,13 @@ export default React.createClass({
     )
   },
 
-  handleChangeColor(value) {
-    this.setState({color: value})
+  handleChangeColor(value, opacity = 1) {
+    this.setState({
+      color: {
+        rgb: value,
+        opacity: opacity
+      }
+    })
   },
 
   handleChangeNumber(value) {
